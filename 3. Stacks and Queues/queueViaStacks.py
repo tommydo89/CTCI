@@ -27,13 +27,13 @@ class MyQueue:
 		self.queue = Stack()
 		self.helper_stack = Stack()
 
-	def push(self, val):
+	def queue(self, val):
 		while (not self.queue.isEmpty()):
 			self.helper_stack.push(self.queue.pop())
 		self.helper_stack.push(val)
 		while (not self.helper_stack.isEmpty()):
 			self.queue.push(self.helper_stack.pop())
-	def pop(self):
+	def dequeue(self):
 		if self.isEmpty():
 			return False
 		return self.queue.pop()
