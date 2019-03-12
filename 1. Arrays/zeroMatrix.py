@@ -1,3 +1,6 @@
+# Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+# column are set to 0. 
+
 def zeroMatrix(matrix):
 	columns = len(matrix[0])
 	rows = len(matrix)
