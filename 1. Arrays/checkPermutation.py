@@ -1,3 +1,6 @@
+# Given two strings, write a method to decide if one is a permutation of the
+# other.
+ 
 def checkPermutation(string_one, string_two):
 	char_counts = {}
 	if (len(string_one) != len(string_two)):
