@@ -3,34 +3,34 @@
 # to be after the elements less than x (see below). The partition element x can appear anywhere in the
 # "right partition"; it does not need to appear between the left and right partitions. 
 
+class LinkedList:
+	def __init__(self):
+		self.head = None
+		self.end = None
+	def append(self, val):
+		newNode = Node(val)
+		if self.head == None:
+			self.head = newNode
+		else:
+			self.end.next = newNode
+		self.end = newNode
+
 class Node:
 	def __init__(self, val):
 		self.val = val
 		self.next = None
-		self.front = None
-		self.end = None
-
-	def append(self, val):
-		newNode = Node(val)
-		if self.front == None:
-			self.front = newNode
-		else:
-			newNode = Node(val)
-			self.end.next = newNode
-		self.end = newNode
 
 def partition(node, k):
-
-	beforeNodes = Node(None)
-	afterNodes = Node(None)
+	beforeNodes = LinkedList()
+	afterNodes = LinkedList()
 	while node != None:
 		if (node.val < k):
 			beforeNodes.append(node.val)
 		else:
 			afterNodes.append(node.val)
 		node = node.next
-	beforeNodes.end.next = afterNodes.front
-	return beforeNodes.front
+	beforeNodes.end.next = afterNodes.head
+	return beforeNodes
 
 
 
