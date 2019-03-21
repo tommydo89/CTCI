@@ -3,34 +3,18 @@
 # arrays that could have led to this tree. 
 
 # def BSTSequences(tree):
-	
 
-def permutation(lst): 
-  
-    # If lst is empty then there are no permutations 
-    if len(lst) == 0: 
-        return [] 
-  
-    # If there is only one element in lst then, only 
-    # one permuatation is possible 
-    if len(lst) == 1: 
-        return [lst] 
-  
-    # Find the permutations for lst if there are 
-    # more than 1 characters 
-  
-    l = [] # empty list that will store current permutation 
-  
-    # Iterate the input(lst) and calculate the permutation 
-    for i in range(len(lst)): 
-       m = lst[i] 
-  
-       # Extract lst[i] or m from the list.  remLst is 
-       # remaining list 
-       remLst = lst[:i] + lst[i+1:] 
-  
-       # Generating all permutations where m is first 
-       # element 
-       for p in permutation(remLst): 
-           l.append([m] + p) 
-    return l 
+def weaveLists(list1, list2, prefix, results):
+    # base case - If either list is empty, append the other remaining list onto the prefix and store it into our results array
+    if (len(list1) == 0 or len(list2) == 0):
+        results.append(prefix + list1 + list2)
+        return
+    prefixL1 = prefix[:]
+    prefixL1.append(list1[0])
+    weaveLists(list1[1:], list2, prefixL1, results)
+    prefixL2 = prefix[:]
+    prefixL2.append(list2[0])
+    weaveLists(list1, list2[1:], prefixL2, results)
+
+
+
