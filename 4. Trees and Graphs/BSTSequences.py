@@ -2,7 +2,17 @@
 # and inserting each element. Given a binary search tree with distinct elements, print all possible
 # arrays that could have led to this tree. 
 
-# def BSTSequences(tree):
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.right = None
+        self.left = None
+
+Node1 = TreeNode(1)
+Node2 = TreeNode(2)
+Node3 = TreeNode(3)
+Node2.left = Node1
+Node2.right = Node3
 
 def weaveLists(list1, list2, prefix, results):
     # base case - If either list is empty, append the other remaining list onto the prefix and store it into our results array
@@ -15,6 +25,19 @@ def weaveLists(list1, list2, prefix, results):
     prefixL2 = prefix[:]
     prefixL2.append(list2[0])
     weaveLists(list1, list2[1:], prefixL2, results)
+
+def allSequences(node):
+    if (node == None):
+        return [[]]
+    leftSeq = allSequences(node.left)
+    rightSeq = allSequences(node.right)
+    prefix = [node.val]
+    results = []
+    for seqL in leftSeq:
+        for seqR in rightSeq:
+            weaved = weaveLists(seqL, seqR, prefix, results)
+    return results
+
 
 
 
