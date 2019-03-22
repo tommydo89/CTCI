@@ -26,16 +26,20 @@ def weaveLists(list1, list2, prefix, results):
     prefixL2.append(list2[0])
     weaveLists(list1, list2[1:], prefixL2, results)
 
-def allSequences(node):
+def BSTSequences(node):
+    # base case 
     if (node == None):
         return [[]]
-    leftSeq = allSequences(node.left)
-    rightSeq = allSequences(node.right)
+    # if the node is not None, then recurse on the left and right. The return value will be a list of all the possible sequences for each left and right subtree
+    leftSeq = BSTSequences(node.left)
+    rightSeq = BSTSequences(node.right)
     prefix = [node.val]
     results = []
+    # We weave each list of sequences from the left and right subtree and then prepend it with root node by setting the root node to be the prefix
     for seqL in leftSeq:
         for seqR in rightSeq:
             weaved = weaveLists(seqL, seqR, prefix, results)
+    # results now contains the list of sequences that could lead to the tree rooted at the current iteration's node
     return results
 
 
