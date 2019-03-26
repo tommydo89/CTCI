@@ -36,6 +36,16 @@ class BST:
 				self.insertNode(val, node.right)
 		node.size += 1
 
+	def find(self, val, node):
+		if (node == None):
+			return False
+		if (val == node.val):
+			return node
+		if (val < node.val):
+			return self.find(val,node.left)
+		if (val >= node.val):
+			return self.find(val, node.right)
+
 	def getRandomNode(self, node = None):
 		# default value for node is head
 		node = node if node is not None else self.head
