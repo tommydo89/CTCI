@@ -7,7 +7,7 @@
 def insertion(outer, inner, start_index, end_index):
 	outer = int(outer, 2)
 	inner = int(inner, 2)
-	mask = ~((((1<<(end_index - start_index + 1)) - 1) or inner) << start_index)
-	outer = outer & mask # sets the bits between the start and end index to 0
-	outer = outer | (inner << start_index)
+	mask = ~((((1<<(end_index - start_index + 1)) - 1) or inner) << start_index) # creates a mask that will allow us to clear the bits from start index to end index
+	outer = outer & mask # clears the bits from start index to end index
+	outer = outer | (inner << start_index) # copies the inner bits to start to end
 	return bin(outer)
