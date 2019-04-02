@@ -11,27 +11,28 @@ def oneAway(string1, string2):
 		return oneEditInsert(string2, string1)
 	return False
 
-def oneEditReplace(string1, string2):
-	differences = 0
+def oneEditReplace(string1, string2): 
+	replaced = 0
 	for char1, char2 in zip(string1, string2):
 		if char1 != char2:
-			differences += 1
-		if differences > 1:
-			return False
+			if replaced:
+				return False
+			else:
+				replaced = 1
 	return True
 
-def oneEditInsert(string1, string2):
-	differences = 0
-	index1 = 0
-	index2 = 0
-	while index1 < len(string1) and index2 < len(string2):
-		if (string1[index1] != string2[index2]):
-			differences += 1
-			index1+=1
+def oneEditInsert(longer_str, shorter_str):
+	removed = False
+	longer_index = 0
+	shorter_index = 0
+	while longer_index < len(longer_str) and shorter_index < len(shorter_str):
+		if (longer_str[longer_index] != shorter_str[shorter_index]):
+			if removed:
+				return False
+			else:
+				removed = True
+				longer_index+=1
 		else:
-			index1+=1
-			index2+=1
-	if differences <= 1:
-		return True
-	else:
-		return False
+			longer_index+=1
+			shorter_index+=1
+	return True
