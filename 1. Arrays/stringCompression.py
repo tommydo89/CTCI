@@ -4,22 +4,24 @@
 # the original string. You can assume the string has only uppercase and lowercase letters (a - z). 
 
 def stringCompression(string):
-	charCountDict = countChar(string)
-	compressedList = []
-	returnOrg = True
-	for key in charCountDict.keys():
-		if charCountDict[key] > 1:
-			returnOrg = False
-		compressed = "%s%d" % (key, charCountDict[key]) 
-		compressedList.append(compressed)
-	if (returnOrg):
+	count = 0
+	prevChar = None
+	result = []
+	for char in string:
+		if (prevChar == None): # we are at the first char in the iteration so we append it and increment count
+			result.append(char)
+			count += 1
+			prevChar = char
+		elif (char != prevChar): # we encounter a different character so we append the current count and then current character and then set count to 1
+			result.append(str(count))
+			result.append(char)
+			count = 1
+			prevChar = char
+		else: # we encounter the same character so we just increment count by 1
+			count += 1
+	result.append(str(count)) # the count for the last char will not be appended with the loop so we do it here
+	result_string = ''.join(result) 
+	if len(result_string) > len(string): # if the result is longer than the original string, return the original
 		return string
 	else:
-		return ''.join(compressedList)	
-
-
-def countChar(string):
-	thisdict = {}
-	for char in string:
-		thisdict[char] = thisdict.get(char, 0) + 1
-	return thisdict
+		return result_string
