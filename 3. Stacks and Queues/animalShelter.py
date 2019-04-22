@@ -26,10 +26,7 @@ class AnimalShelter:
 		if (self.head == None):
 			self.head = newAnimal
 		else:
-			if(self.head.next == None):
-				self.head.next = newAnimal
-			else:
-				self.end.next = newAnimal
+			self.end.next = newAnimal
 		self.end = newAnimal
 
 	def dequeueAny(self):
@@ -37,6 +34,8 @@ class AnimalShelter:
 			return False
 		animal = self.head
 		self.head = self.head.next
+		if (self.head == None):
+			self.end = None
 		return animal
 
 	def dequeueDog(self):
@@ -46,6 +45,8 @@ class AnimalShelter:
 			return animal
 		while (animal.next != None):
 			if (animal.next.val == 'Dog'):
+				if (animal.next == self.end):
+					self.end = animal
 				returnAnimal = animal.next
 				animal.next = animal.next.next
 				return returnAnimal
@@ -58,6 +59,8 @@ class AnimalShelter:
 			return animal
 		while (animal.next != None):
 			if (animal.next.val == 'Cat'):
+				if (animal.next == self.end):
+					self.end = animal
 				returnAnimal = animal.next
 				animal.next = animal.next.next
 				return returnAnimal
