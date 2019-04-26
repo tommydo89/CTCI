@@ -3,7 +3,7 @@
 # stairs. 
 
 def tripleStep(stair_length, stored_results):
-	if stair_length == 0:
+	if stair_length == 0: # if stair_length is 0, that means the series of steps we took works 
 		return 1
 	if stair_length < 0:
 		return 0
