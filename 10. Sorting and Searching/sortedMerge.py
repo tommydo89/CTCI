@@ -1,3 +1,6 @@
+# You are given two sorted arrays, A and B, where A has a large enough buffer at the
+# end to hold B. Write a method to merge B into A in sorted order. 
+
 def sortedMerge(A, B):
 	A_index = find_last_index(A) # last index in A
 	B_index = len(B) - 1 # last index in B
