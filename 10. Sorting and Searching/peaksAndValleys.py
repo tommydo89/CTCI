@@ -5,18 +5,34 @@
 # Input: {5, 3, 1, 2, 3}
 # Output: {5, 1, 3, 2, 3} 
 
-def peaksAndValleys(array):
-	array.sort(reverse = True)
-	start = 0
-	end = len(array) - 1
-	result = []
-	while start <= end:
-		if start == end:
-			result.append(array[start])
-		else:
-			result.append(array[start])
-			result.append(array[end])
-		start += 1
-		end -= 1
-	return result
+# SUB OPTIMAL SOLUTION
+# def peaksAndValleys(array): 
+# 	array.sort(reverse = True)
+# 	start = 0
+# 	end = len(array) - 1
+# 	result = []
+# 	while start <= end:
+# 		if start == end:
+# 			result.append(array[start])
+# 		else:
+# 			result.append(array[start])
+# 			result.append(array[end])
+# 		start += 1
+# 		end -= 1
+# 	return result
 
+
+def peaksAndValleys(array):
+	max_index = len(array) - 1
+	for index in range(1, max_index + 1, 2):
+		max_int = max(array[index - 1], array[index], array[index + 1])
+		if array[index - 1] == max_int:
+			swap(array, index - 1, index)
+		if array[index + 1] == max_int:
+			swap(array, index + 1, index)
+	return array
+
+def swap(array, index1, index2):
+	temp = array[index1]
+	array[index1] = array[index2]
+	array[index2] = temp
