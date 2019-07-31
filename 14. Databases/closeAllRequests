@@ -1,0 +1,11 @@
+/* Building #11 is undergoing a major renovation. Implement a query to close all
+requests from apartments in this building*/
+
+UPDATE requests
+SET
+	status = 'Close'
+where aptID in (
+	select aptID
+	from apartments
+	where buildingID = 11
+)
