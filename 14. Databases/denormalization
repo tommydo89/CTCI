@@ -1,0 +1,4 @@
+ What is denormalization? Explain the pros and cons. 
+
+ Denormalization is when you duplicate data across different tables because you believe they will be used frequently. This will reduce the number of 
+ expensive joins in a relational database that you will have to do whenever you may need to access that data. The cons for this is that you will be taking up extra storage for data. 
