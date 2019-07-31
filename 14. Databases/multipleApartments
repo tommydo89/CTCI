@@ -1,0 +1,10 @@
+# Write a SOL query to get a list of tenants who are renting more than one
+# apartment.
+
+select tenantName
+	 , count(*) as apartment_count
+from tenants t
+	join tenantApartments ta
+		on t.tenantID = ta.tenantID
+group by tenantName
+having count(*) > 1
