@@ -1,0 +1,12 @@
+# Write a SQL query to get a list of all buildings and the number of open requests
+# (Requests in which status equals 'Open'). 
+
+select buildingName
+	 , sum(case when r.requestID is not NULL then 1 else 0 end) as total_requests
+from buildings b
+	join apartments a
+		on b.buildingID = a.buildingID
+	left join requests r
+		on a.aptID = r.aptID
+		and r.status = 'Open'
+group by buildingName
