@@ -1,0 +1,16 @@
+/*What are the different types of joins? Please explain how they differ and why certain types
+are better in certain situations. */
+
+there are 2 main types of joins: inner joins and outer joins.
+
+Inner joins will only include the rows from each table where they satisfy the join condition 
+There are 3 types of outer joins
+
+	Left Join will include all of the rows from the left table and if there is a matching record from the right table, that record will be appended
+	to its matching record in the left table. Else a record filled with nulls will 
+
+	Right Join is basically the same as above but different positions
+
+	Full Outer Join will include all records from both the left and the right table. If no matching record was found, then the corresponding
+	result fields will have a null value 
+
