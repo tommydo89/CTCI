@@ -2,12 +2,13 @@
 def englishInt(number):
 	number_scale = ['', 'Thousand', 'Million' , 'Billion', 'Trillion', 'Quadrillion', 'Quintillion', 'Sextillion', 'Septillion']
 	result_string = ''
-	num_string = format(number, ',d')
-	if num_string[0] == '-':
+	num_string = format(number, ',d') # inserts commas into the number
+	if num_string[0] == '-': # inserts 'Negative' if the number is negative
 		result_string += 'Negative'
 		num_string = num_string[1:]
-	num_array = num_string.split(',')
+	num_array = num_string.split(',') # splits the number by the commas
 	max_index = len(num_array) - 1
+	# iterate over each set of digits in the array converting them into English and then appending the appropriate number scale
 	for index in range(max_index + 1):
 		result_string += parse(num_array[index]) + ' ' + number_scale[max_index - index] + ' '
 	return result_string
@@ -18,6 +19,7 @@ def englishInt(number):
 def parse(number):
 	return parse_digit_3(number) + parse_digit_2(number) + parse_digit_1(number)
 
+# parses the 1st digit of a 3 digit number
 def parse_digit_3(number):
 	if len(number) != 3:
 		return ''
@@ -35,6 +37,7 @@ def parse_digit_3(number):
 	}
 	return number_map.get(digit)
 
+# parses the 1st digit of a either a 3 or 2 digit number
 def parse_digit_2(number):
 	if len(number) == 3:
 		digit = number[1]
@@ -55,6 +58,7 @@ def parse_digit_2(number):
 	}
 	return number_map.get(digit)
 
+# parses the 1st digit of a 1, 2, or 3 digit number
 def parse_digit_1(number):
 	if len(number) == 3:
 		digit_2 = number[1]
@@ -65,6 +69,7 @@ def parse_digit_1(number):
 	if len(number) == 1:
 		digit_2 = None
 		digit = number[0]
+	# number_map changes depending on if the previous digit was a 1
 	if (digit_2 == '1'):
 		number_map = {
 			'0': 'Ten',
