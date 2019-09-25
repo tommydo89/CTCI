@@ -11,6 +11,7 @@ class Point:
 def bestLine(points):
 	lines = {}
 	vertical_lines = {}
+	# we map each line to the number of times we see it appear for two pairs of points
 	for point_1 in points:
 		for point_2 in points:
 			if point_2 != point_1:
@@ -25,6 +26,7 @@ def bestLine(points):
 						lines[slope][intercept] = lines.get(slope).get(intercept, 0) + 1
 	highest = 0
 	bestLine = -1
+	# iterate and find the line with the highest count
 	for slope in lines.keys():
 		for intercept, count in lines[slope].items():
 			if count > highest:
