@@ -10,7 +10,7 @@
 # Write a method that, given a guess and a solution, returns the number of hits and pseudo-hits.
 
 def masterMind(solution, guesses):
-	pseudo_hits = {}
+	pseudo_hits = {} # maps a ball to an array of two values where the first value represents the number of times it appeared in the solution without a correct guess and the second value is the number of times it was guessed incorrectly
 	hits = 0
 	for slot, guess in zip(solution, guesses):
 		if guess == slot:
@@ -18,10 +18,10 @@ def masterMind(solution, guesses):
 		# we can calculate the number of pseudo hits for a ball based on the number of times it appeared in the solution without a correct guess
 		# and the number of times it was guessed without being correct. We take the minimum of these two numbers to get the pseudo hits
 		else:
-			if slot not in pseudo_hits: # maps a ball to the maximum number of pseudo hits it can have
+			if slot not in pseudo_hits: # maps a ball to the number of times it appeared in the solution but not guessed correctly
 				pseudo_hits[slot] = [0,0]
 			pseudo_hits[slot][0] += 1
-			if guess not in pseudo_hits: # maps a ball to the number of times it was not guessed correctly
+			if guess not in pseudo_hits: # maps a ball to the number of times it guessed but not correctly
 				pseudo_hits[guess] = [0,0]
 			pseudo_hits[guess][1] += 1
 	pseudo_hit_ct = 0
