@@ -4,12 +4,12 @@
 	
 
 def recursiveEvaluate(expression, result):
-	if len(expression) == 1:
+	if len(expression) == 1: # base case
 		if toBool(expression) == result:
 			return 1
 		return 0
 	ways = 0
-	for operator_index in range(1, len(expression), 2):
+	for operator_index in range(1, len(expression), 2): # recursively place a parenthesis around everything on the left and the right of an operator 
 		left_true = recursiveEvaluate(expression[0:operator_index], True)
 		left_false = recursiveEvaluate(expression[0:operator_index], False)
 		right_true = recursiveEvaluate(expression[operator_index+1:], True)
@@ -25,7 +25,7 @@ def recursiveEvaluate(expression, result):
 			total_true += (left_true*right_true) + (left_true*right_false) + (left_false*right_true)
 		if result == True:
 			ways += total_true
-		else:
+		else: # we subtract total_true from ways in order to get the possible ways to get False as a result
 			ways += total - total_true
 	return ways
 

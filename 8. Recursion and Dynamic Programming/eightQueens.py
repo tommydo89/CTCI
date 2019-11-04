@@ -9,13 +9,13 @@ def eightQueens(board):
 	return results
 
 def recursiveEightQueens(board, row, positions, results):
-	if row == 8:
+	if row == 8: # base case where we have filled every row with a queen
 		results.append(positions)
 		return
 	available_cols = board[row]
-	if len(available_cols) == 0:
+	if len(available_cols) == 0: # base case where there are no available spots in a row to place a queen
 		return
-	for col in available_cols:
+	for col in available_cols: # iterate over every available spot in the current row and recurse
 		board_copy = copy.deepcopy(board)
 		board_copy[row].remove(col)
 		positions_copy = copy.copy(positions)
@@ -23,7 +23,7 @@ def recursiveEightQueens(board, row, positions, results):
 		clearSpace(board_copy, row, col)
 		recursiveEightQueens(board_copy, row + 1, positions_copy, results)
 
-def clearSpace(board, row, col):
+def clearSpace(board, row, col): # clears all the appropriate columns and diagonals after placing a queen
 	clearColumn(board, col)
 	clearDiagonals(board, row, col)
 
